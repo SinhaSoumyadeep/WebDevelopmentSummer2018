@@ -2,6 +2,16 @@
 $(document).ready(function(){
 
 	onload();
+	function desc(msg)
+	{
+	   var x = document.getElementById("info")
+	    x.className = "show";
+	   if(!msg.startsWith("SUCCESSFULLY")){
+	   	x.style.backgroundColor = "rgb(217, 56, 26)";
+	   }
+	    x.innerHTML=msg;
+	    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2600);
+	}
 	function onload()
 	{
     $.ajax({
@@ -42,6 +52,7 @@ $(document).ready(function(){
     		
     	}
     })
+    $("#usernameFld").removeAttr("readonly");
 	}
 	
 	
@@ -69,10 +80,12 @@ $(document).ready(function(){
         		var list = response;
         		if(list.length==0)
     			{
-        			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+        			/*var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
 	      				      '<td id="err"> NO SEARCH RESULT...</td>'+
 	      				      '</tr>'); 
-        			$('table> tbody:last').append($row);
+        			$('table> tbody:last').append($row);*/
+        			desc("NO SEARCH RESULT");
+        			
     			}
         		else{
 	        		list.forEach(function(l){
@@ -93,7 +106,7 @@ $(document).ready(function(){
 	        		});
         		}
         		$(':input').val('');
-        		
+        		$("#usernameFld").removeAttr("readonly");
         		
         		
         	}
@@ -123,22 +136,26 @@ $(document).ready(function(){
         	
         	success: function(response)
         	{
-        		
+        		$(':input').val('');
         		if(response!='success')
     			{
-        			$("tbody").empty();
-        			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+        			//$("tbody").empty();
+        			/*var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
 	      				      '<td id="err"> '+response+' </td>'+
 	      				      '</tr>'); 
-        			$('table> tbody:last').append($row);
+        			$('table> tbody:last').append($row);*/
+        			desc(response);
     			}
         		else{
-	        		$(':input').val('');
+        			
 	        		$("tbody").empty();
 	        		onload();
+	        		desc("SUCCESSFULLY ADDED");
+	        		
         		}
         	}
           })
+          $("#usernameFld").removeAttr("readonly");
 	})
 
     $(document).on('click', '#del', function(){
@@ -157,8 +174,10 @@ $(document).ready(function(){
         		$(':input').val('');
         		$("tbody").empty();
         		onload();
+        		desc("SUCCESSFULLY DELETED");
         	}
           })
+          $("#usernameFld").removeAttr("readonly");
         
     });
 	
@@ -199,6 +218,7 @@ $(document).ready(function(){
 			 {
 			 	$("#roleFld").val($(this).html());
 			 }
+			 $("#usernameFld").attr('readonly','true');
 				 	
 		 })
 		 
@@ -226,22 +246,25 @@ $(document).ready(function(){
 	        	
 	        	success: function(response)
 	        	{
-	        		
+	        		$(':input').val('');
 	        		if(response!='success')
 	    			{
-	        			$("tbody").empty();
-	        			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+	        			//$("tbody").empty();
+	        			/*var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
 		      				      '<td id="err"> CANNOT BE UPDATED... </td>'+
 		      				      '</tr>'); 
-	        			$('table> tbody:last').append($row);
+	        			$('table> tbody:last').append($row);*/
+	        			desc("CANNOT BE UPDATED");
 	    			}
 	        		else{
-		        		$(':input').val('');
+		        		
 		        		$("tbody").empty();
 		        		onload();
+		        		desc("SUCCESSFULLY UPDATED");
 	        		}
 	        	}
 	          })
+	          $("#usernameFld").removeAttr("readonly");
 			
 		})
     

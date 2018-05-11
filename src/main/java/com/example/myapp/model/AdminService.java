@@ -63,7 +63,7 @@ public class AdminService {
 		if(user.equals(""))
 		{
 			System.out.println("user id field is empty");
-			return "USER ID FEILD IS EMPTY...";
+			return "USER ID FEILD IS EMPTY";
 		}
 		
 		
@@ -85,7 +85,7 @@ public class AdminService {
 		else
 		{
 			System.out.println("cannot create with same user id");
-			return "USER ALREADY EXISTS...";
+			return "USER ALREADY EXISTS";
 		}
 		
 	}
