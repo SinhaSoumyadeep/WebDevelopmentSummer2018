@@ -6,9 +6,14 @@ $(document).ready(function(){
 	{
 	   var x = document.getElementById("info")
 	    x.className = "show";
+	  
 	   if(!msg.startsWith("SUCCESSFULLY")){
 	   	x.style.backgroundColor = "rgb(217, 56, 26)";
 	   }
+	   else
+		   {
+			x.style.backgroundColor = "rgba(113, 217, 41, 1)";
+		   }
 	    x.innerHTML=msg;
 	    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2600);
 	}
