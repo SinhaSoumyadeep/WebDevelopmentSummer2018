@@ -28,7 +28,7 @@ $(document).ready(function(){
 		  				      '<td id="first['+l.id+']">'+l.first+'</td>'+
 		  				      '<td id="last['+l.id+']">'+l.last+'</td>'+
 		  				      '<td id="role['+l.id+']">'+l.role+'</td>'+
-		  				      '<td style="padding-left: 120px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
+		  				      '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
 		  				      '</tr>'); 
 		    			
 		    			$('table> tbody:last').append($row);
@@ -84,7 +84,7 @@ $(document).ready(function(){
 	      				      '<td id="first['+l.id+']">'+l.first+'</td>'+
 	      				      '<td id="last['+l.id+']">'+l.last+'</td>'+
 	      				      '<td id="role['+l.id+']">'+l.role+'</td>'+
-	      				      '<td style="padding-left: 120px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
+	      				      '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
 	      				      '</tr>'); 
 	        			
 	        			$('table> tbody:last').append($row);
@@ -125,10 +125,20 @@ $(document).ready(function(){
         	
         	success: function(response)
         	{
-        		//alert("successful:");
-        		$(':input').val('');
-        		$("tbody").empty();
-        		onload();
+        		
+        		if(response!='success')
+    			{
+        			$("tbody").empty();
+        			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+	      				      '<td id="err"> '+response+' </td>'+
+	      				      '</tr>'); 
+        			$('table> tbody:last').append($row);
+    			}
+        		else{
+	        		$(':input').val('');
+	        		$("tbody").empty();
+	        		onload();
+        		}
         	}
           })
 	})
@@ -197,6 +207,45 @@ $(document).ready(function(){
 		 
 		 
 	 });
+	 
+	 $("#update").click(function(){
+		 
+			var user= $("#usernameFld").val();	
+	        var pass= $("#passwordFld").val();
+	        var first= $("#firstNameFld").val();
+	        var last= $("#lastNameFld").val();
+	        var role= $("#roleFld").val();
+			$.ajax({
+	        	type:"POST", 
+	        	url: "api/updateuser",
+	        	data: {
+	        		'user': user,
+	          		'pass': pass,
+	          		'first':first,
+	          		'last':last,
+	          		'role':role
+	        	},
+	        	
+	        	success: function(response)
+	        	{
+	        		
+	        		if(response!='success')
+	    			{
+	        			$("tbody").empty();
+	        			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+		      				      '<td id="err"> CANNOT BE UPDATED... </td>'+
+		      				      '</tr>'); 
+	        			$('table> tbody:last').append($row);
+	    			}
+	        		else{
+		        		$(':input').val('');
+		        		$("tbody").empty();
+		        		onload();
+	        		}
+	        	}
+	          })
+			
+		})
     
     
 });

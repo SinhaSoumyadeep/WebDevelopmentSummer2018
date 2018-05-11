@@ -26,26 +26,74 @@ public class AdminService {
 	@Autowired
 	AdminHostRepo adminrepo;
 	
-	
+	@RequestMapping(value="api/updateuser")
+	public String updateValues(String user,String pass,String first,String last, String role)
+	{
+
+		List<AdminHost> listByUserName=new ArrayList<>();
+		listByUserName = adminrepo.findAllByUser(user);
+		System.out.println(listByUserName);
+		
+		if(listByUserName.size()==1&&listByUserName.get(0).getUser().equals(user)) {
+			
+			AdminHost delUser=listByUserName.get(0);
+			adminrepo.delete(delUser);
+			AdminHost userInfo = new AdminHost();
+			userInfo.setFirst(first.trim());
+			userInfo.setLast(last.trim());
+			userInfo.setPassword(pass.trim());
+			userInfo.setRole(role.trim());
+			userInfo.setUser(user.trim());
+			adminrepo.save(userInfo);
+			System.out.println("successfully updated an user");
+			return "success";
+		}
+		else
+		{
+			System.out.println("cannot be updated");
+			return "cannot be updated";
+		}
+		
+	}
 	
 	@RequestMapping(value="/api/adduser")
-	public void addValues(String user,String pass,String first,String last, String role)
+	public String addValues(String user,String pass,String first,String last, String role)
 	{
-		System.out.println(user+" "+pass+" "+first+" "+last+" "+role);
-		AdminHost userInfo = new AdminHost();
-		userInfo.setFirst(first.trim());
-		userInfo.setLast(last.trim());
-		userInfo.setPassword(pass.trim());
-		userInfo.setRole(role.trim());
-		userInfo.setUser(user.trim());
-		adminrepo.save(userInfo);
+		
+		if(user.equals(""))
+		{
+			System.out.println("user id field is empty");
+			return "USER ID FEILD IS EMPTY...";
+		}
+		
+		
+		List<AdminHost> listByUserName=new ArrayList<>();
+		listByUserName = adminrepo.findAllByUser(user);
+		
+		
+		if(listByUserName.isEmpty()) {
+			AdminHost userInfo = new AdminHost();
+			userInfo.setFirst(first.trim());
+			userInfo.setLast(last.trim());
+			userInfo.setPassword(pass.trim());
+			userInfo.setRole(role.trim());
+			userInfo.setUser(user.trim());
+			adminrepo.save(userInfo);
+			System.out.println("successfully created an user");
+			return "success";
+		}
+		else
+		{
+			System.out.println("cannot create with same user id");
+			return "USER ALREADY EXISTS...";
+		}
 		
 	}
 	
 	@RequestMapping(value="/api/searchuser")
 	public Set<AdminHost> serachUser(String search)
 	{
-		System.out.println("**************   "+search+"  **************");
+		
 		List<AdminHost> listByUserName=new ArrayList<>();
 		List<AdminHost> listByFirstName=new ArrayList<>();
 		List<AdminHost> listByLastName=new ArrayList<>();
@@ -90,7 +138,7 @@ public class AdminService {
 	@RequestMapping(value="api/onload")
 	public Iterable<AdminHost> onLoad()
 	{
-		System.out.println("hello!! i am in onload");
+		
 		Iterable<AdminHost> listByUser=new ArrayList<>();
 		listByUser=adminrepo.findAll();
 		return listByUser;
