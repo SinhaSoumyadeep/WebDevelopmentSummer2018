@@ -61,7 +61,7 @@ $(document).ready(function(){
 	$("#search").click(function(){
 		
 		
-		$("tbody").empty();
+		
 		var searchKey= $("#searchFld").val();	
 		
         
@@ -88,6 +88,7 @@ $(document).ready(function(){
         			
     			}
         		else{
+        			$("tbody").empty();
 	        		list.forEach(function(l){
 	        			
 	        			
