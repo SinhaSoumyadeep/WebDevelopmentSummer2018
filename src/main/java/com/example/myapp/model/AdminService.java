@@ -138,7 +138,7 @@ public class AdminService {
 	@RequestMapping(value="api/onload")
 	public Iterable<AdminHost> onLoad()
 	{
-		
+		System.out.println("Inside onload method...");
 		Iterable<AdminHost> listByUser=new ArrayList<>();
 		listByUser=adminrepo.findAll();
 		return listByUser;

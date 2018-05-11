@@ -19,9 +19,11 @@ $(document).ready(function(){
 	}
 	function onload()
 	{
+		
+		//alert("onloading files!!");
     $.ajax({
     	type:"POST", 
-    	url: "api/onload",
+    	url: "/api/onload",
     	
     	
     	success: function(response)
@@ -31,7 +33,10 @@ $(document).ready(function(){
     		var list = response;
     		if(list.length==0)
 			{
-    			alert("NO DATA FOUND..")
+    			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+    				      '<td id="err"> NO DATA AVAILABLE...</td>'+
+    				      '</tr>'); 
+  			$('table> tbody:last').append($row);
 			}
     		else{
 		    		list.forEach(function(l){
@@ -72,7 +77,7 @@ $(document).ready(function(){
         
         $.ajax({
         	type:"POST", 
-        	url: "api/searchuser",
+        	url: "/api/searchuser",
         	data: {
         		
         		'search': searchKey,
@@ -131,7 +136,7 @@ $(document).ready(function(){
         var role= $("#roleFld").val();
 		$.ajax({
         	type:"POST", 
-        	url: "api/adduser",
+        	url: "/api/adduser",
         	data: {
         		'user': user,
           		'pass': pass,
@@ -170,7 +175,7 @@ $(document).ready(function(){
     	
     	$.ajax({
         	type:"POST", 
-        	url: "api/deluser",
+        	url: "/api/deluser",
         	data: {
         		'id': $id
         	},
@@ -224,7 +229,7 @@ $(document).ready(function(){
 			 {
 			 	$("#roleFld").val($(this).html());
 			 }
-			 $("#usernameFld").attr('readonly','true');
+			// $("#usernameFld").attr('readonly','true');
 				 	
 		 })
 		 
@@ -241,7 +246,7 @@ $(document).ready(function(){
 	        var role= $("#roleFld").val();
 			$.ajax({
 	        	type:"POST", 
-	        	url: "api/updateuser",
+	        	url: "/api/updateuser",
 	        	data: {
 	        		'user': user,
 	          		'pass': pass,
