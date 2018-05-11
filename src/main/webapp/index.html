@@ -7,51 +7,35 @@
   "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
 <link rel="stylesheet" href=
   "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link href="user-admin.style.client.css" rel="stylesheet" />
+<link href="CSS/style.css" rel="stylesheet" />
 <script
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../services/user.service.client.js"></script>
 <script src="user-admin.controller.client.js"></script>
-<script>
-$(document).ready(function(){
-    $("i").click(function(){
-
-        var classNameid=this.className;
-        if(classNameid=="fa-2x fa fa-check wbdv-update")
-        {
-          alert("update");
-        }
-        else if(classNameid=="fa-2x fa fa-search wbdv-search")
-        {
-          alert("search");
-        }
-        else if(classNameid=="fa-2x fa fa-plus wbdv-create")
-        {
-          alert("create");
-        }
-        else if(classNameid=="fa-2x fa fa-times wbdv-remove")
-        {
-          alert("remove");
-        }
-        else if(classNameid=="fa-2x fa fa-pencil wbdv-edit")
-        {
-          alert("edit");
-        }
-
-
-
-    });
-});
-
-</script>
+<script src="JS/admin.js"></script>
 
 </head>
 
 <body>
 
-<h1> User Admin </h1>
-<table class="table">
+<h1 style="text-align: center;"> User Admin </h1>
+
+
+<table class="table" id="tble">
   <thead>
+  <tr >
+  	<td></td>
+  	<td></td>
+  	
+      <td ><input style="float: right;" id="searchFld" class="form-control" placeholder="Search..." /></td>
+      <td>
+      		<button type="button" class="btn btn-success" id="search">Search</button>
+        
+        </td>
+        <td></td>
+        <td></td>
+	</tr>
+	
     <tr>
       <th>Username</th>
       <th>Password</th>
@@ -71,29 +55,21 @@ $(document).ready(function(){
       <td><input id="lastNameFld" class="form-control"
         placeholder="Last Name" /></td>
       <td><select id="roleFld" class="form-control">
+      	  <option value="">Select</option>
           <option value="FACULTY">Faculty</option>
           <option value="STUDENT">Student</option>
       </select></td>
       <td><span class="float-right" style="white-space: nowrap">
-            <i class="fa-2x fa fa-search wbdv-search"  onclick="function1()"></i> <i
-            class="fa-2x fa fa-plus wbdv-create"  onclick="function1()"></i> <i
-            class="fa-2x fa fa-check wbdv-update"  onclick="function1()"></i>
-        </span></td>
-      </tr>
-      <tbody class="wbdv-tbody">
-      <tr class="wbdv-template wbdv-user wbdv-hidden">
-        <td class="wbdv-username">ada</td>
-        <td>&nbsp;</td>
-        <td class="wbdv-first-name">Ada</td>
-        <td class="wbdv-last-name">Lovelace</td>
-        <td class="wbdv-role">FACULTY</td>
-        <td class="wbdv-actions">
-          <span class="float-right">
-            <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
-            <i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
-          </span>
+      		<!--<button type="button" class="btn btn-success" id="search">Search</button>-->
+            <button type="button" class="btn btn-success" id="add">Create</button>
+            <button type="button" class="btn btn-success" id="update">Update</button>
+        </span>
         </td>
-     </tr>
+      </tr>
+      <tbody class="wbdv-tbody" id="tbdy" >
+      
+        
+     
    </tbody>
   </table>
 
