@@ -15,7 +15,7 @@ import com.example.myapp.bean.AdminHost;
 import com.example.myapp.bean.AdminHostRepo;
 
 @RestController
-public class HelloService {
+public class AdminService {
 
     /*@RequestMapping("/hello")
     public String index() {
