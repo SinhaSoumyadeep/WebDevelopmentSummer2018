@@ -66,7 +66,6 @@ function UserServiceClient() {
                 'id': id
             },
 
-
         })
 
         var delResponse = deleteUserRes.responseText;

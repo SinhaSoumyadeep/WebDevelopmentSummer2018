@@ -13,6 +13,7 @@ $(document).ready(function(){
         $('#add').click(createUser);
         $('#update').click(updateUser);
         $(document).on('click', '#del', function(){deleteUser(this);});
+        $(document).on('click', '#edit', function(){renderUser(this);});
 
 
     }
@@ -155,10 +156,23 @@ $(document).ready(function(){
         $("#usernameFld").removeAttr("readonly");
 
     }
+/*
+    this function handles rendering a particular user.
+ */
+
+function renderUser(renderObj)
+{
+
+    var nearestTableData = $(renderObj).closest('tr').find('td');
+
+    $("#usernameFld").val(nearestTableData[0].innerHTML);
+    $("#passwordFld").val(nearestTableData[1].innerHTML);
+    $("#firstNameFld").val(nearestTableData[2].innerHTML);
+    $("#lastNameFld").val(nearestTableData[3].innerHTML);
+    $("#roleFld").val(nearestTableData[4].innerHTML);
 
 
-
-
+}
 
 
 
@@ -198,60 +212,7 @@ $(document).ready(function(){
 
 
 	})
-
-
-
-  /*  $(document).on('click', '#del', function(){
-
-        deleteUser(this);
-
-
-    });*/
-
-
-	 $(document).on('click', '#edit', function(){
-
-
-		 var $id = $(this).closest('tr').attr('id');
-		 var res = $id.match(/[\d]/g);
-		 var ress="[";
-		    for (i = 0; i < res.length; i++) {
-		    		ress=ress+res[i];
-			}
-		    ress=ress.concat("]");
-
-
-		$(this).closest('tr').find('td').each(function(){
-			 if($(this).attr("id")=="user".concat(ress))
-			 {
-			 	$("#usernameFld").val($(this).html());
-			 }
-
-			 if($(this).attr("id")=="pass".concat(ress))
-			 {
-			 	$("#passwordFld").val($(this).html());
-			 }
-			 
-			 if($(this).attr("id")=="first".concat(ress))
-			 {
-			 	$("#firstNameFld").val($(this).html());
-			 }
-			 
-			 if($(this).attr("id")=="last".concat(ress))
-			 {
-			 	$("#lastNameFld").val($(this).html());
-			 }
-			 if($(this).attr("id")=="role".concat(ress))
-			 {
-			 	$("#roleFld").val($(this).html());
-			 }
-			// $("#usernameFld").attr('readonly','true');
-				 	
-		 })
-		 
-		 
-		 
-	 });
+    
 	 
 /*
     this function is used to display success or failure information. //finalized.
