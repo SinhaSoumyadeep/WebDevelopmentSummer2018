@@ -110,7 +110,7 @@ public class AdminService {
 	}
 	
 	@RequestMapping(value="/api/deluser")
-	public void delValues(String id)
+	public String delValues(String id)
 	{
 		System.out.println(id);
 		Pattern pattern = Pattern.compile("trow\\[([0-9]*)\\]");
@@ -121,8 +121,9 @@ public class AdminService {
 			key=matcher.group(1);
 			System.out.println(key);
 			adminrepo.deleteById(Integer.parseInt(key));
+			return "success";
 		}
-		
+		return "SOMETHING WENT WRONG!";
 	}
 	
 	@RequestMapping(value="api/onload")

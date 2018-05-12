@@ -3,6 +3,7 @@ function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
     this.updateUser = updateUser;
+    this.deleteUser = deleteUser;
     var self = this;
 
 
@@ -52,6 +53,24 @@ function UserServiceClient() {
         })
 
         return updateUserRes.responseText
+
+    }
+
+    function deleteUser(id) {
+
+        var deleteUserRes = $.ajax({
+            async: false,
+            type:"POST",
+            url: "/api/deluser",
+            data: {
+                'id': id
+            },
+
+
+        })
+
+        var delResponse = deleteUserRes.responseText;
+        return delResponse;
 
     }
     

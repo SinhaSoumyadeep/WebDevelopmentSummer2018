@@ -9,11 +9,12 @@ $(document).ready(function(){
     the main method.
  */
     function main() {
-
+        findAllUsers();
         $('#add').click(createUser);
         $('#update').click(updateUser);
+        $(document).on('click', '#del', function(){deleteUser(this);});
 
-        findAllUsers();
+
     }
 
 /*
@@ -132,34 +133,54 @@ $(document).ready(function(){
 
     }
 
+/*
+    this function handles deletion of user from database.
+ */
+    function deleteUser(delObj)
+    {
+
+        var $id = $(delObj).closest('tr').attr('id');
+        var response = userService.deleteUser($id);
+
+        if(response == 'success') {
+            $("tbody").empty();
+            findAllUsers();
+            infoMsgs("SUCCESSFULLY DELETED");
+        }
+        else
+        {
+            infoMsgs(response);
+        }
+        $(':input').val('');
+        $("#usernameFld").removeAttr("readonly");
+
+    }
 
 
 
 
 
 
-	
-	
-	
+
 	$("#search").click(function(){
-		
-		
-		
-		var searchKey= $("#searchFld").val();	
-		
-        
+
+
+
+		var searchKey= $("#searchFld").val();
+
+
         $.ajax({
-        	type:"POST", 
+        	type:"POST",
         	url: "/api/searchuser",
         	data: {
-        		
+
         		'search': searchKey,
-          		
+
         	},
-        	
+
         	success: function(response)
         	{
-        		
+
         		var list = response;
         		if(list.length==0)
     			{
@@ -174,53 +195,38 @@ $(document).ready(function(){
 
         	}
           })
-        
-        
-	})
-	
 
-    $(document).on('click', '#del', function(){
-    	
-    	var $id = $(this).closest('tr').attr('id');
-    	
-    	$.ajax({
-        	type:"POST", 
-        	url: "/api/deluser",
-        	data: {
-        		'id': $id
-        	},
-        	
-        	success: function(response)
-        	{
-        		$(':input').val('');
-        		$("tbody").empty();
-        		findAllUsers();
-        		infoMsgs("SUCCESSFULLY DELETED");
-        	}
-          })
-          $("#usernameFld").removeAttr("readonly");
-        
-    });
-	
-	
+
+	})
+
+
+
+  /*  $(document).on('click', '#del', function(){
+
+        deleteUser(this);
+
+
+    });*/
+
+
 	 $(document).on('click', '#edit', function(){
-		 
-		 
+
+
 		 var $id = $(this).closest('tr').attr('id');
 		 var res = $id.match(/[\d]/g);
 		 var ress="[";
-		    for (i = 0; i < res.length; i++) { 
+		    for (i = 0; i < res.length; i++) {
 		    		ress=ress+res[i];
 			}
 		    ress=ress.concat("]");
-		  
+
 
 		$(this).closest('tr').find('td').each(function(){
 			 if($(this).attr("id")=="user".concat(ress))
 			 {
 			 	$("#usernameFld").val($(this).html());
 			 }
-			 
+
 			 if($(this).attr("id")=="pass".concat(ress))
 			 {
 			 	$("#passwordFld").val($(this).html());
