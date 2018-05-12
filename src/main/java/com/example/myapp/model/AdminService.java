@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,24 +28,18 @@ public class AdminService {
 	AdminHostRepo adminrepo;
 	
 	@RequestMapping(value="api/updateuser")
-	public String updateValues(String user,String pass,String first,String last, String role)
+	public String updateValues(@RequestBody AdminHost UserObject)
 	{
 
 		List<AdminHost> listByUserName=new ArrayList<>();
-		listByUserName = adminrepo.findAllByUser(user);
+		listByUserName = adminrepo.findAllByUser(UserObject.getUser());
 		System.out.println(listByUserName);
 		
-		if(listByUserName.size()==1&&listByUserName.get(0).getUser().equals(user)) {
+		if(listByUserName.size()==1&&listByUserName.get(0).getUser().equals(UserObject.getUser())) {
 			
 			AdminHost delUser=listByUserName.get(0);
 			adminrepo.delete(delUser);
-			AdminHost userInfo = new AdminHost();
-			userInfo.setFirst(first.trim());
-			userInfo.setLast(last.trim());
-			userInfo.setPassword(pass.trim());
-			userInfo.setRole(role.trim());
-			userInfo.setUser(user.trim());
-			adminrepo.save(userInfo);
+			adminrepo.save(UserObject);
 			System.out.println("successfully updated an user");
 			return "success";
 		}
@@ -57,10 +52,10 @@ public class AdminService {
 	}
 	
 	@RequestMapping(value="/api/adduser")
-	public String addValues(String user,String pass,String first,String last, String role)
+	public String addValues(@RequestBody AdminHost UserObject)
 	{
 		
-		if(user.equals(""))
+		if(UserObject.getUser().equals(""))
 		{
 			System.out.println("user id field is empty");
 			return "USER ID FEILD IS EMPTY";
@@ -68,17 +63,11 @@ public class AdminService {
 		
 		
 		List<AdminHost> listByUserName=new ArrayList<>();
-		listByUserName = adminrepo.findAllByUser(user);
+		listByUserName = adminrepo.findAllByUser(UserObject.getUser());
 		
 		
 		if(listByUserName.isEmpty()) {
-			AdminHost userInfo = new AdminHost();
-			userInfo.setFirst(first.trim());
-			userInfo.setLast(last.trim());
-			userInfo.setPassword(pass.trim());
-			userInfo.setRole(role.trim());
-			userInfo.setUser(user.trim());
-			adminrepo.save(userInfo);
+			adminrepo.save(UserObject);
 			System.out.println("successfully created an user");
 			return "success";
 		}
@@ -87,6 +76,7 @@ public class AdminService {
 			System.out.println("cannot create with same user id");
 			return "USER ALREADY EXISTS";
 		}
+		
 		
 	}
 	

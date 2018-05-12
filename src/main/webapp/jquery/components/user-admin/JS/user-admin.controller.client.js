@@ -1,70 +1,143 @@
 
 $(document).ready(function(){
-
-	onload();
-	function desc(msg)
-	{
-	   var x = document.getElementById("info")
-	    x.className = "show";
-	  
-	   if(!msg.startsWith("SUCCESSFULLY")){
-	   	x.style.backgroundColor = "rgb(217, 56, 26)";
-	   }
-	   else
-		   {
-			x.style.backgroundColor = "rgba(113, 217, 41, 1)";
-		   }
-	    x.innerHTML=msg;
-	    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2600);
-	}
-	function onload()
-	{
-		
-		//alert("onloading files!!");
-    $.ajax({
-    	type:"POST", 
-    	url: "/api/onload",
-    	
-    	
-    	success: function(response)
-    	{
-    		
-
-    		var list = response;
-    		if(list.length==0)
-			{
-    			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
-    				      '<td id="err"> NO DATA AVAILABLE...</td>'+
-    				      '</tr>'); 
-  			$('table> tbody:last').append($row);
-			}
-    		else{
-		    		list.forEach(function(l){
-		    			
-		    			
-		    			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="trow['+l.id+']">'+
-		  				      '<td id="user['+l.id+']">'+l.user+'</td>'+
-		  				      '<td id="pass['+l.id+']">'+l.password+'</td>'+
-		  				      '<td id="first['+l.id+']">'+l.first+'</td>'+
-		  				      '<td id="last['+l.id+']">'+l.last+'</td>'+
-		  				      '<td id="role['+l.id+']">'+l.role+'</td>'+
-		  				      '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
-		  				      '</tr>'); 
-		    			
-		    			$('table> tbody:last').append($row);
-		    			
-		    			
-		    			
-		    			
-		    		});
-    		
-    	}
-    		
-    	}
-    })
-    $("#usernameFld").removeAttr("readonly");
-	}
 	
+	var userService = new UserServiceClient();
+
+    jQuery(main);
+
+/*
+    the main method.
+ */
+    function main() {
+
+        $('#add').click(createUser);
+        $('#update').click(updateUser);
+
+        findAllUsers();
+    }
+
+/*
+    this function is used to add users to the database. //finalized.
+ */
+    function createUser() {
+
+        var user= $("#usernameFld").val();
+        var pass= $("#passwordFld").val();
+        var first= $("#firstNameFld").val();
+        var last= $("#lastNameFld").val();
+        var role= $("#roleFld").val();
+
+        var userObj = new User(user,pass,first,last,role);
+
+        var response = userService.createUser(userObj);
+
+
+        if(response!='success')
+        {
+
+            infoMsgs(response);
+        }
+        else{
+
+            $("tbody").empty();
+            findAllUsers()
+            infoMsgs("SUCCESSFULLY ADDED");
+            $(':input').val('');
+
+        }
+
+
+        $("#usernameFld").removeAttr("readonly");
+
+    }
+
+
+/*
+    this function is used to find all users in Database. //finalized.
+ */
+    function findAllUsers()
+    {
+
+        var list = userService.findAllUsers();
+
+        if(list.length==0)
+        {
+            var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
+                '<td id="err"> NO DATA AVAILABLE...</td>'+
+                '</tr>');
+            $('table> tbody:last').append($row);
+        }
+        else{
+
+            renderUsers(list);
+
+        }
+
+
+    }
+/*
+    this function is used to render all users in the html table //finalized.
+*/
+    function renderUsers(listOfUsers)
+    {
+        listOfUsers.forEach(function(l){
+
+
+            var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="trow['+l.id+']">'+
+                '<td id="user['+l.id+']">'+l.user+'</td>'+
+                '<td id="pass['+l.id+']">'+l.password+'</td>'+
+                '<td id="first['+l.id+']">'+l.first+'</td>'+
+                '<td id="last['+l.id+']">'+l.last+'</td>'+
+                '<td id="role['+l.id+']">'+l.role+'</td>'+
+                '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
+                '</tr>');
+
+            $('table> tbody:last').append($row);
+
+        });
+    }
+
+
+/*
+    this function is used to update users in the database //finalized.
+*/
+    function updateUser()
+    {
+
+        var user= $("#usernameFld").val();
+        var pass= $("#passwordFld").val();
+        var first= $("#firstNameFld").val();
+        var last= $("#lastNameFld").val();
+        var role= $("#roleFld").val();
+
+        var userObj = new User(user,pass,first,last,role);
+        var response = userService.updateUser(userObj);
+
+
+
+        if(response!='success')
+        {
+            infoMsgs("CANNOT BE UPDATED");
+        }
+        else{
+
+            $("tbody").empty();
+            findAllUsers();
+            infoMsgs("SUCCESSFULLY UPDATED");
+        }
+
+        $(':input').val('');
+        $("#usernameFld").removeAttr("readonly");
+
+
+    }
+
+
+
+
+
+
+
 	
 	
 	
@@ -90,84 +163,21 @@ $(document).ready(function(){
         		var list = response;
         		if(list.length==0)
     			{
-        			/*var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
-	      				      '<td id="err"> NO SEARCH RESULT...</td>'+
-	      				      '</tr>'); 
-        			$('table> tbody:last').append($row);*/
-        			desc("NO SEARCH RESULT");
-        			
+        			infoMsgs("NO SEARCH RESULT");
     			}
         		else{
         			$("tbody").empty();
-	        		list.forEach(function(l){
-	        			
-	        			
-	        			var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="trow['+l.id+']">'+
-	      				      '<td id="user['+l.id+']">'+l.user+'</td>'+
-	      				      '<td id="pass['+l.id+']">'+l.password+'</td>'+
-	      				      '<td id="first['+l.id+']">'+l.first+'</td>'+
-	      				      '<td id="last['+l.id+']">'+l.last+'</td>'+
-	      				      '<td id="role['+l.id+']">'+l.role+'</td>'+
-	      				      '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
-	      				      '</tr>'); 
-	        			
-	        			$('table> tbody:last').append($row);
-	        			
-	        			
-	        		});
+	        		renderUsers(list);
         		}
         		$(':input').val('');
         		$("#usernameFld").removeAttr("readonly");
-        		
-        		
+
         	}
           })
         
         
 	})
 	
-	
-	
-	$("#add").click(function(){
-		var user= $("#usernameFld").val();	
-        var pass= $("#passwordFld").val();
-        var first= $("#firstNameFld").val();
-        var last= $("#lastNameFld").val();
-        var role= $("#roleFld").val();
-		$.ajax({
-        	type:"POST", 
-        	url: "/api/adduser",
-        	data: {
-        		'user': user,
-          		'pass': pass,
-          		'first':first,
-          		'last':last,
-          		'role':role
-        	},
-        	
-        	success: function(response)
-        	{
-        		$(':input').val('');
-        		if(response!='success')
-    			{
-        			//$("tbody").empty();
-        			/*var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
-	      				      '<td id="err"> '+response+' </td>'+
-	      				      '</tr>'); 
-        			$('table> tbody:last').append($row);*/
-        			desc(response);
-    			}
-        		else{
-        			
-	        		$("tbody").empty();
-	        		onload();
-	        		desc("SUCCESSFULLY ADDED");
-	        		
-        		}
-        	}
-          })
-          $("#usernameFld").removeAttr("readonly");
-	})
 
     $(document).on('click', '#del', function(){
     	
@@ -184,8 +194,8 @@ $(document).ready(function(){
         	{
         		$(':input').val('');
         		$("tbody").empty();
-        		onload();
-        		desc("SUCCESSFULLY DELETED");
+        		findAllUsers();
+        		infoMsgs("SUCCESSFULLY DELETED");
         	}
           })
           $("#usernameFld").removeAttr("readonly");
@@ -237,47 +247,24 @@ $(document).ready(function(){
 		 
 	 });
 	 
-	 $("#update").click(function(){
-		 
-			var user= $("#usernameFld").val();	
-	        var pass= $("#passwordFld").val();
-	        var first= $("#firstNameFld").val();
-	        var last= $("#lastNameFld").val();
-	        var role= $("#roleFld").val();
-			$.ajax({
-	        	type:"POST", 
-	        	url: "/api/updateuser",
-	        	data: {
-	        		'user': user,
-	          		'pass': pass,
-	          		'first':first,
-	          		'last':last,
-	          		'role':role
-	        	},
-	        	
-	        	success: function(response)
-	        	{
-	        		$(':input').val('');
-	        		if(response!='success')
-	    			{
-	        			//$("tbody").empty();
-	        			/*var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="terror">'+
-		      				      '<td id="err"> CANNOT BE UPDATED... </td>'+
-		      				      '</tr>'); 
-	        			$('table> tbody:last').append($row);*/
-	        			desc("CANNOT BE UPDATED");
-	    			}
-	        		else{
-		        		
-		        		$("tbody").empty();
-		        		onload();
-		        		desc("SUCCESSFULLY UPDATED");
-	        		}
-	        	}
-	          })
-	          $("#usernameFld").removeAttr("readonly");
-			
-		})
+/*
+    this function is used to display success or failure information. //finalized.
+ */
+    function infoMsgs(msg)
+    {
+        var x = document.getElementById("info")
+        x.className = "show";
+
+        if(!msg.startsWith("SUCCESSFULLY")){
+            x.style.backgroundColor = "rgb(217, 56, 26)";
+        }
+        else
+        {
+            x.style.backgroundColor = "rgba(113, 217, 41, 1)";
+        }
+        x.innerHTML=msg;
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2600);
+    }
     
     
 });
