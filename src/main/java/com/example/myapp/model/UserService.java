@@ -241,6 +241,14 @@ public class UserService {
 		return UserObject;
 	}
 	
+	@RequestMapping(value="api/logout")
+	public String logout( HttpSession session)
+	{
+		
+		System.out.println(session.getAttribute("id"));
+		session.invalidate();
+		return "logout";
+	}
 	
 	
 

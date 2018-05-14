@@ -11,7 +11,14 @@ $(document).ready(function(){
         populateProfile(UserObj);
 
         $("#updateBtn").click(updateProfile);
+        $("#logoutBtn").click(logout);
 
+
+    }
+
+    function logout() {
+
+        var response = userService.logout();
 
     }
 

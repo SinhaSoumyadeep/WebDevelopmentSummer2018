@@ -9,6 +9,7 @@ function UserServiceClient() {
     this.register = register;
     this.login = login;
     this.profile = profile;
+    this.logout = logout;
 
     var self = this;
 
@@ -157,6 +158,17 @@ function UserServiceClient() {
 
         return retUser.responseJSON
 
+    }
+
+    function logout() {
+
+        var logoutRes = $.ajax({
+            async: false,
+            type: "POST",
+            url: "/api/logout",
+
+
+        })
     }
 
 
