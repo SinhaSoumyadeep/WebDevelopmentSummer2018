@@ -51,6 +51,17 @@ $(document).ready(function(){
         var phone = $("#phoneFld").val()
         var date = $("#datepicker").val()
 
+        if(!validateEmail(email))
+        {
+            infoMsgs("You have entered invalid email address!")
+            return
+        }
+        if(!validatePhonenumber(phone))
+        {
+            infoMsgs("You have entered invalid Phone Number!")
+            return
+        }
+
 
         var updateUserObj = new User(id,username,password,firstname,lastName,role,email,date,phone)
 
@@ -87,9 +98,28 @@ $(document).ready(function(){
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4600);
     }
 
+    function validateEmail(mail)
+    {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+        {
+            return true
+        }
 
+        return false
+    }
 
-
+    function validatePhonenumber(phone)
+    {
+        var phoneno = /^\d{10}$/;
+        if(phone.match(phoneno))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
 

@@ -47,7 +47,7 @@ public class UserService {
 		if(listByUserName.size()==1&&listByUserName.get(0).getUser().equals(UserObject.getUser())) {
 			
 			adminrepo.save(UserObject);
-			System.out.println("successfully updated an user");
+			System.out.println("successfully updated an User");
 			return "success";
 		}
 		else
