@@ -29,7 +29,7 @@ $(document).ready(function(){
         var last= $("#lastNameFld").val();
         var role= $("#roleFld").val();
 
-        var userObj = new User(user,pass,first,last,role);
+        var userObj = new User("",user,pass,first,last,role);
 
         var response = userService.createUser(userObj);
 
@@ -105,14 +105,14 @@ $(document).ready(function(){
 */
     function updateUser()
     {
-
+        var id = $("#idFld").val();
         var user= $("#usernameFld").val();
         var pass= $("#passwordFld").val();
         var first= $("#firstNameFld").val();
         var last= $("#lastNameFld").val();
         var role= $("#roleFld").val();
 
-        var userObj = new User(user,pass,first,last,role);
+        var userObj = new User(id,user,pass,first,last,role);
         var response = userService.updateUser(userObj);
 
 
@@ -164,19 +164,24 @@ function renderUser(renderObj)
 {
 
     var nearestTableData = $(renderObj).closest('tr').find('td');
+    var id = $(renderObj).closest('tr').attr('id');
 
+    var res = id.match(/[\d]*/g);
+    $("#idFld").val(res[5]);
     $("#usernameFld").val(nearestTableData[0].innerHTML);
     $("#passwordFld").val(nearestTableData[1].innerHTML);
     $("#firstNameFld").val(nearestTableData[2].innerHTML);
     $("#lastNameFld").val(nearestTableData[3].innerHTML);
     $("#roleFld").val(nearestTableData[4].innerHTML);
 
+    $("#usernameFld").focus();
+
 
 }
 
 
 
-	$("#search").click(function(){
+	$("#searchFld").keyup(function(){
 
 
 
@@ -204,7 +209,7 @@ function renderUser(renderObj)
         			$("tbody").empty();
 	        		renderUsers(list);
         		}
-        		$(':input').val('');
+        		//$(':input').val('');
         		$("#usernameFld").removeAttr("readonly");
 
         	}
@@ -212,7 +217,7 @@ function renderUser(renderObj)
 
 
 	})
-    
+
 	 
 /*
     this function is used to display success or failure information. //finalized.

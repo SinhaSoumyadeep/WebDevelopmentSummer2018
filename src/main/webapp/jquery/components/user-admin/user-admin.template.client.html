@@ -5,17 +5,18 @@
 <title>User Admin</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link href="../user-admin/CSS/user-admin.style.client.css" rel="stylesheet" />
+<link href="CSS/user-admin.style.client.css" rel="stylesheet" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script src="../user-admin/JS/user-admin.controller.client.js"></script>
-<script src="../user-admin/JS/Services/user.service.client.js"></script>
-    <script src="../user-admin/JS/user.model.client.js"></script>
+<script src="JS/user-admin.controller.client.js"></script>
+<script src="../../Services/user.service.client.js"></script>
+    <script src="../../Models/user.model.client.js"></script>
 </head>
 
 <body>
 <div id="info"></div>
+<img src="../Images/logo.png" alt="Mountain View" style="width:200px;height:60px;" align="middle">
 <h1 style="text-align: center;"> User Admin </h1>
 
 
@@ -24,12 +25,9 @@
   <tr >
   	<td></td>
   	<td></td>
-  	
-      <td ><input style="float: right;" id="searchFld" class="form-control" placeholder="Search..." /></td>
-      <td>
-      		<button type="button" class="btn btn-success" id="search">Search</button>
-        
-        </td>
+      <td></td>
+      <td ><input style="float: right; width: 230%" id="searchFld" class="form-control" placeholder="Search..." /></td>
+
         <td></td>
         <td></td>
 	</tr>
@@ -44,7 +42,9 @@
     </tr>
 
     <tr class="wbdv-form">
-      <td><input id="usernameFld" class="form-control"
+      <td>
+          <input type="hidden" class="form-control" id="idFld" placeholder="Id" readonly>
+          <input id="usernameFld" class="form-control"
         placeholder="Username" /></td>
       <td><input id="passwordFld" class="form-control"
         placeholder="Password" /></td>

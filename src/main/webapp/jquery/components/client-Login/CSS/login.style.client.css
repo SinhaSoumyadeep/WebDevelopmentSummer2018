@@ -1,7 +1,21 @@
+div#centreAlign
+{
+    padding-top: 111px;
+    margin: auto;
+}
+div#reg
+{
+    height: 263px;
+    width: 431px;
+    border: 10px solid rgba(255, 255, 255, 0.3);
+    border-radius: .44rem;
+    margin: auto;
+
+}
 body{
-  background: #343d46;
-  color: white;
-  
+    background: #343d46;
+    color: white;
+
 }
 #info {
     visibility: hidden;
@@ -25,6 +39,7 @@ body{
     animation: fadein 0.5s, fadeout 0.5s 7.9s;
 
 }
+
 img {
     display: block;
     margin-left: auto;

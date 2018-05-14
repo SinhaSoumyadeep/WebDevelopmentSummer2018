@@ -3,10 +3,13 @@ function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
     this.findByUsername = findByUsername;
+    this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.deleteUser = deleteUser;
     this.register = register;
     this.login = login;
+    this.profile = profile;
+
     var self = this;
 
 
@@ -78,8 +81,17 @@ function UserServiceClient() {
 
     function register(User) {
 
-        var response = createUser(User);
-        return response;
+        var regResponse = $.ajax({
+            async: false,
+            type: "POST",
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json',
+            url: "/api/register",
+            data: JSON.stringify(User),
+
+        })
+
+        return regResponse.responseText
 
     }
 
@@ -114,6 +126,39 @@ function UserServiceClient() {
         return loginRes.responseJSON
 
     }
+
+    function findUserById(User) {
+
+        var retUser = $.ajax({
+            async: false,
+            type: "POST",
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json',
+            url: "/api/retrieveProfile",
+            data: JSON.stringify(User),
+
+        })
+
+        return retUser.responseJSON
+
+    }
+
+    function profile(User) {
+
+        var retUser = $.ajax({
+            async: false,
+            type: "POST",
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json',
+            url: "/api/profile",
+            data: JSON.stringify(User),
+
+        })
+
+        return retUser.responseJSON
+
+    }
+
 
 
 }

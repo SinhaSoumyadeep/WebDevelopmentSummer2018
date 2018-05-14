@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="CSS/register.style.client.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="JS/register.controller.client.js"></script>
+    <script src="../../Services/user.service.client.js"></script>
+    <script src="../../Models/user.model.client.js"></script>
+</head>
+
+<body>
+<div id="info"></div>
+
+
+<div id="centreAlign" >
+    <img src="../Images/logo.png" alt="Mountain View" style="width:200px;height:60px;" align="middle">
+    <h1 style="text-align: center;"> Sign Up</h1>
+<div id="reg" >
+    <table class="table" id="tble" >
+
+
+        <tr >
+
+            <td><input id="usernameFld" class="form-control"
+                       placeholder="Username" /></td>
+        </tr>
+        <tr>
+            <td><input id="passwordFld" class="form-control"
+                       placeholder="Password" /></td>
+        </tr>
+        <tr>
+            <td><input id="verifyPassswordFld" class="form-control"
+                       placeholder="Verify password" /></td>
+        </tr>
+
+        <tr >
+            <td>
+                <div class="col-md-4 text-center">
+                <!--<button type="button" class="btn btn-success" id="search">Search</button>-->
+                <button type="button" class="btn btn-success" id="registerBtn"  style="padding: 7.37px 149.75px;" disabled>Sign up</button>
+
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
