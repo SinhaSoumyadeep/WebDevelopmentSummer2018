@@ -65,7 +65,7 @@ $(document).ready(function(){
             x.style.backgroundColor = "rgba(113, 217, 41, 1)";
         }
         x.innerHTML=msg;
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2600);
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4600);
     }
 
 

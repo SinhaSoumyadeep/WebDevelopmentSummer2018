@@ -236,7 +236,6 @@ public class UserService {
 		System.out.println(":::::::::"+UserObject);
 		System.out.println(session.getAttribute("id"));
 		//Integer id = Integer.parseInt(session.getAttribute("id").toString());
-		
 		adminrepo.save(UserObject);
 		System.out.println(UserObject);
 		return UserObject;
