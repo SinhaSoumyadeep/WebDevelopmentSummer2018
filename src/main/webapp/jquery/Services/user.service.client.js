@@ -10,6 +10,7 @@ function UserServiceClient() {
     this.login = login;
     this.profile = profile;
     this.logout = logout;
+    this.sendEmail = sendEmail;
 
     var self = this;
 
@@ -172,6 +173,24 @@ function UserServiceClient() {
 
         return logoutRes.responseText
     }
+
+    function sendEmail(email) {
+        var emailRes = $.ajax({
+            async: false,
+            type:"POST",
+            url: "/api/forgot",
+            data: {
+                'email': email
+            },
+
+        })
+
+
+        return emailRes.responseText;
+
+    }
+
+
 
 
 

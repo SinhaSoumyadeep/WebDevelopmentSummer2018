@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 	
+	
+	
 	@Query("SELECT usr FROM User usr WHERE LOWER(usr.user) LIKE CONCAT(LOWER(:user),'%')")
 	List<User> findAllByUser(@Param("user")String user);
 	
@@ -27,5 +29,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	
 	@Query("SELECT usr FROM User usr WHERE LOWER(usr.role) LIKE CONCAT(LOWER(:role),'%')")
 	public List<User> findByRole(@Param("role") String role);
+	
+	@Query("SELECT usr FROM User usr WHERE usr.email = :email")
+	User findByEmail(@Param("email")String email);
 	
 }

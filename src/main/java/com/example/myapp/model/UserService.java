@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.myapp.bean.SendEmail;
 import com.example.myapp.bean.User;
 import com.example.myapp.bean.UserRepository;
 
@@ -256,6 +257,25 @@ public class UserService {
 		session.invalidate();
 		return "logout";
 	}
+	
+	@RequestMapping(value="api/forgot")
+	public String forgotPassword(String email)
+	{
+		User usr = adminrepo.findByEmail(email);
+		if(usr==null)
+		{
+			return "THIS EMAIL ID DOESNOT EXIST IN OUR RECORD.";
+		}
+		else {
+		
+		SendEmail emailObj = new SendEmail();
+		 String emailResponse = emailObj.mail(email);
+		
+		return emailResponse;
+		}
+	}
+	
+	
 	
 	
 
