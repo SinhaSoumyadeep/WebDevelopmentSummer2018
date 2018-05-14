@@ -91,7 +91,7 @@ $(document).ready(function(){
                 '<td id="first['+l.id+']">'+l.first+'</td>'+
                 '<td id="last['+l.id+']">'+l.last+'</td>'+
                 '<td id="role['+l.id+']">'+l.role+'</td>'+
-                '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 23px;" class="btn btn-warning" id="edit">Edit</button></td>'+
+                '<td style="padding-left: 123px;" ><button type="button" class="btn btn-danger" id="del">Delete</button>  <button type="button" style=" padding-left: 23px; padding-right: 20px;" class="btn btn-warning" id="edit">Edit</button></td>'+
                 '</tr>');
 
             $('table> tbody:last').append($row);
@@ -112,6 +112,12 @@ $(document).ready(function(){
         var last= $("#lastNameFld").val();
         var role= $("#roleFld").val();
 
+        if(id == '')
+        {
+            infoMsgs("CANNOT BE UPDATED")
+            return
+        }
+
         var userObj = new User(id,user,pass,first,last,role);
         var response = userService.updateUser(userObj);
 
@@ -119,7 +125,7 @@ $(document).ready(function(){
 
         if(response!='success')
         {
-            infoMsgs("CANNOT BE UPDATED");
+            infoMsgs(response);
         }
         else{
 

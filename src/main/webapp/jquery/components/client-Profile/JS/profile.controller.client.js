@@ -20,6 +20,11 @@ $(document).ready(function(){
 
         var response = userService.logout();
 
+        if(response == 'logout')
+        {
+            window.location.replace("../client-Login/login.template.client.html")
+            return
+        }
     }
 
     function populateProfile(UserObj) {
@@ -29,6 +34,9 @@ $(document).ready(function(){
         $("#firstNameFld").val(UserObj.first)
         $("#lastNameFld").val(UserObj.last)
         $("#roleFld").val(UserObj.role)
+        $("#emailFld").val(UserObj.email)
+        $("#phoneFld").val(UserObj.phone)
+        $("#datepicker").val(UserObj.dob)
 
     }
 
@@ -39,8 +47,12 @@ $(document).ready(function(){
         var firstname = $("#firstNameFld").val()
         var lastName = $("#lastNameFld").val()
         var role = $("#roleFld").val()
+        var email = $("#emailFld").val()
+        var phone = $("#phoneFld").val()
+        var date = $("#datepicker").val()
 
-        var updateUserObj = new User(id,username,password,firstname,lastName,role)
+
+        var updateUserObj = new User(id,username,password,firstname,lastName,role,email,date,phone)
 
         var response = userService.profile(updateUserObj);
         if(response.id == id)

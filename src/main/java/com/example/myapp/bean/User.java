@@ -16,8 +16,31 @@ public class User {
 	private String first;
 	private String last;
 	private String role;
+	private String email;
+	private String dob;
+	private String phone;
 	
 	
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public Integer getId() {
 		return id;
 	}

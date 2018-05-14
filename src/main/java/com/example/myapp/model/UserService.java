@@ -32,6 +32,12 @@ public class UserService {
 	@RequestMapping(value="api/updateuser")
 	public String updateValues(@RequestBody User UserObject)
 	{
+		
+		User userNameChangechk = adminrepo.findByUserId(UserObject.getId());
+		if(!userNameChangechk.getUser().equals(UserObject.getUser()))
+		{
+			return "USERNAME CANNOT BE MODIFIED";
+		}
 
 		List<User> listByUserName=new ArrayList<>();
 		listByUserName = adminrepo.findAllByUser(UserObject.getUser());
