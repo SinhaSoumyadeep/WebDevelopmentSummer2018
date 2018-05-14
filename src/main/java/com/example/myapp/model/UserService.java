@@ -37,6 +37,7 @@ public class UserService {
 		listByUserName = adminrepo.findAllByUser(UserObject.getUser());
 		System.out.println(listByUserName);
 		
+		
 		if(listByUserName.size()==1&&listByUserName.get(0).getUser().equals(UserObject.getUser())) {
 			
 			adminrepo.save(UserObject);

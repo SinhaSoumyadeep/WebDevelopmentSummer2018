@@ -169,6 +169,8 @@ function UserServiceClient() {
 
 
         })
+
+        return logoutRes.responseText
     }
 
 
