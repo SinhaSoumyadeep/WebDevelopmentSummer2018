@@ -69,8 +69,7 @@ $(document).ready(function(){
             }
         }
 
-
-
+        
 
         var updateUserObj = new User(id,username,password,firstname,lastName,role,email,date,phone)
 
