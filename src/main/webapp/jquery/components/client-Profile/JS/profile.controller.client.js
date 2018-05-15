@@ -53,13 +53,17 @@ $(document).ready(function(){
 
         if(!validateEmail(email))
         {
+
             infoMsgs("You have entered invalid email address!")
             return
+
         }
         if(!validatePhonenumber(phone))
         {
+
             infoMsgs("You have entered invalid Phone Number!")
             return
+
         }
 
 
