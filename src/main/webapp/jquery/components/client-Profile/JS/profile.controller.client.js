@@ -8,7 +8,7 @@ $(document).ready(function(){
 
         var defaultUser = new User("","Jane Doe","","John","Doe","STUDENT")
         var UserObj = userService.findUserById(defaultUser);
-        if(UserObj.id == '')
+        if(UserObj.status == 500)
         {
             window.location.replace("../client-Login/login.template.client.html");
             return
