@@ -125,7 +125,7 @@ $(document).ready(function(){
         {
             infoMsgs("Username Unavailable");
 
-            $("#usernameFld").val('');
+            //$("#usernameFld").val('');
             return
         }
 
