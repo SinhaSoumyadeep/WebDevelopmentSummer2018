@@ -22,7 +22,7 @@ $(document).ready(function () {
 
         if(response == 'SUCCESSFULLY SENT')
         {
-            infoMsgs("RESET LINK SUCCESSFULLY SENT")
+            infoMsgs("EMAIL SUCCESSFULLY SENT")
 
             setTimeout(function () {
                 window.location.replace("../client-Login/login.template.client.html")
