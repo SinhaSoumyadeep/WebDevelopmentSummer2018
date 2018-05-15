@@ -64,19 +64,19 @@ public class UserService {
 		}
 		
 		
-		List<User> listByUserName=new ArrayList<>();
-		listByUserName = adminrepo.findAllByUser(UserObject.getUser());
+		User listByUserName=new User();
+		listByUserName = adminrepo.findByUsername(UserObject.getUser());
 		
 		
-		if(listByUserName.isEmpty()) {
-			adminrepo.save(UserObject);
-			System.out.println("successfully created an user");
-			return "success";
+		if(listByUserName != null) {
+			System.out.println("cannot create with same user id");
+			return "USER ALREADY EXISTS";
 		}
 		else
 		{
-			System.out.println("cannot create with same user id");
-			return "USER ALREADY EXISTS";
+			adminrepo.save(UserObject);
+			System.out.println("successfully created an user");
+			return "success";
 		}
 		
 		
