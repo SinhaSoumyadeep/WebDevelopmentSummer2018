@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     function main() {
 
-        var defaultUser = new User("","John Doe","","John","Doe","STUDENT")
+        var defaultUser = new User("","Jane Doe","","John","Doe","STUDENT")
         var UserObj = userService.findUserById(defaultUser);
         populateProfile(UserObj);
 
@@ -110,6 +110,9 @@ $(document).ready(function(){
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4600);
     }
 
+    /*
+this function is used to validate email. //finalized.
+*/
     function validateEmail(mail)
     {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
@@ -120,6 +123,9 @@ $(document).ready(function(){
         return false
     }
 
+    /*
+this function is used to validate phone number . //finalized.
+*/
     function validatePhonenumber(phone)
     {
         var phoneno = /^\d{10}$/;
