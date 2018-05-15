@@ -51,15 +51,22 @@ $(document).ready(function(){
         var phone = $("#phoneFld").val()
         var date = $("#datepicker").val()
 
-        if(!validateEmail(email))
+        if(email!="")
         {
-            infoMsgs("You have entered invalid email address!")
-            return
+
+            if(!validateEmail(email))
+            {
+                infoMsgs("INVALID EMAIL ADDRESS")
+                return
+            }
         }
-        if(!validatePhonenumber(phone))
+        if(phone!="")
         {
-            infoMsgs("You have entered invalid Phone Number!")
-            return
+            if(!validatePhonenumber(phone))
+            {
+                infoMsgs("INVALID PHONE NUMBER")
+                return
+            }
         }
 
 
