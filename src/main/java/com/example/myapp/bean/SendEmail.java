@@ -13,9 +13,9 @@ import javax.mail.internet.MimeMessage;
 public class SendEmail {
 	
 	
-	   public String mail(String email) {
+	   public String mail(User usr) {
 
-		      String to = email;
+		      String to = usr.getEmail();
 		      String from = "webdevsummer2018@gmail.com";
 		      final String username = "webdevsummer2018";
 		      final String password = "Northeastern@123";
@@ -41,7 +41,7 @@ public class SendEmail {
 			   message.setRecipients(Message.RecipientType.TO,
 		               InternetAddress.parse(to));
 			   message.setSubject("Password Reset Link");
-			   message.setText("here is the link to http://www.google.com");
+			   message.setText("Hi "+usr.getFirst()+" "+usr.getLast()+", \n\n Your Password is: "+usr.getPassword()+"\n\n Best Regards,\n Team SpringBoot.");
 
 			   Transport.send(message);
 

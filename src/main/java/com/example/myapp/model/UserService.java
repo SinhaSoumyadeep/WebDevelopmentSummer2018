@@ -269,7 +269,7 @@ public class UserService {
 		else {
 		
 		SendEmail emailObj = new SendEmail();
-		 String emailResponse = emailObj.mail(email);
+		 String emailResponse = emailObj.mail(usr);
 		
 		return emailResponse;
 		}
