@@ -8,6 +8,11 @@ $(document).ready(function(){
 
         var defaultUser = new User("","Jane Doe","","John","Doe","STUDENT")
         var UserObj = userService.findUserById(defaultUser);
+        if(UserObj.id == '')
+        {
+            window.location.replace("../client-Login/login.template.client.html");
+            return
+        }
         populateProfile(UserObj);
 
         $("#updateBtn").click(updateProfile);
