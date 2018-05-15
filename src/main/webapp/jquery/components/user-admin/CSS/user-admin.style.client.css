@@ -30,3 +30,10 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+
+#logoutBtn
+{
+    float: right;
+    margin-top: 8px;
+    margin-right: 13px;
+}

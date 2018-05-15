@@ -46,7 +46,11 @@ $(document).ready(function(){
 
         if(response.user == user && response.password == pass)
         {
-
+            if(response.role == 'ADMIN')
+            {
+                window.location.replace("../user-admin/user-admin.template.client.html")
+                return
+            }
             window.location.replace("../client-Profile/profile.template.client.html")
         }
         else

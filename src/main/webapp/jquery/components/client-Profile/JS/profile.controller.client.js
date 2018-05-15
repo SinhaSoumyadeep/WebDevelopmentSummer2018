@@ -51,6 +51,12 @@ $(document).ready(function(){
         var phone = $("#phoneFld").val()
         var date = $("#datepicker").val()
 
+        if(password == "")
+        {
+            infoMsgs("PASSWORD CANNOT BE EMPTY")
+            return
+        }
+
         if(email!="")
         {
 

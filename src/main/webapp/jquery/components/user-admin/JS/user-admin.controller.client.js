@@ -12,6 +12,7 @@ $(document).ready(function(){
         findAllUsers();
         $('#add').click(createUser);
         $('#update').click(updateUser);
+        $('#logoutBtn').click(logout);
         $(document).on('click', '#del', function(){deleteUser(this);});
         $(document).on('click', '#edit', function(){renderUser(this);});
 
@@ -83,7 +84,7 @@ $(document).ready(function(){
     function renderUsers(listOfUsers)
     {
         listOfUsers.forEach(function(l){
-
+            if(l.id == 1) return;
 
             var $row = $('<tr class="wbdv-template wbdv-user wbdv-hidden" id="trow['+l.id+']">'+
                 '<td id="user['+l.id+']">'+l.user+'</td>'+
@@ -223,6 +224,14 @@ function renderUser(renderObj)
 
 
 	})
+
+
+    function logout() {
+
+        window.location.replace("../client-Login/login.template.client.html")
+        return
+
+    }
 
 	 
 /*
