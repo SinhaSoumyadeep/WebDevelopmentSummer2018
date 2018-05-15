@@ -21,11 +21,7 @@ import com.example.myapp.bean.UserRepository;
 @RestController
 public class UserService {
 
-    /*@RequestMapping("/hello")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }*/
-	
+ 	
 	
 	@Autowired
 	UserRepository adminrepo;
@@ -42,8 +38,6 @@ public class UserService {
 
 		User listByUserName=new User();
 		listByUserName = adminrepo.findByUsername(UserObject.getUser());
-		System.out.println(listByUserName);
-		
 		
 		if(listByUserName.getUser().equals(UserObject.getUser())) {
 			
