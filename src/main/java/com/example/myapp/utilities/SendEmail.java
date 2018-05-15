@@ -1,4 +1,4 @@
-package com.example.myapp.bean;
+package com.example.myapp.utilities;
 
 import java.util.Properties;
 
@@ -9,6 +9,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import com.example.myapp.model.User;
 
 public class SendEmail {
 	

@@ -1,4 +1,4 @@
-package com.example.myapp.model;
+package com.example.myapp.manager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myapp.bean.SendEmail;
-import com.example.myapp.bean.User;
-import com.example.myapp.bean.UserRepository;
+import com.example.myapp.dao.UserRepository;
+import com.example.myapp.model.User;
+import com.example.myapp.utilities.SendEmail;
 
 @RestController
 public class UserService {
