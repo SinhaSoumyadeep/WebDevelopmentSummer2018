@@ -225,7 +225,9 @@ function renderUser(renderObj)
 
 	})
 
-
+    /*
+        this function is used to logout from admin dashboard //finalized.
+     */
     function logout() {
 
         window.location.replace("../client-Login/login.template.client.html")
