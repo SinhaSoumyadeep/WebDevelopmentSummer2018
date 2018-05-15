@@ -198,7 +198,11 @@ $(document).ready(function(){
     }
 
 /*
-    this function is used to display success or failure information. //finalized.
+<<<<<<< HEAD
+    this function is used to display success or failure information.//finalized.
+=======
+    this function is used to display success or failure information.//finalized.
+>>>>>>> origin/master
 */
     function infoMsgs(msg)
     {
