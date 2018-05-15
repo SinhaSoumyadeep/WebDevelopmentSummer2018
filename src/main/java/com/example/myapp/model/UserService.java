@@ -40,12 +40,12 @@ public class UserService {
 			return "USERNAME CANNOT BE MODIFIED";
 		}
 
-		List<User> listByUserName=new ArrayList<>();
-		listByUserName = adminrepo.findAllByUser(UserObject.getUser());
+		User listByUserName=new User();
+		listByUserName = adminrepo.findByUsername(UserObject.getUser());
 		System.out.println(listByUserName);
 		
 		
-		if(listByUserName.size()==1&&listByUserName.get(0).getUser().equals(UserObject.getUser())) {
+		if(listByUserName.getUser().equals(UserObject.getUser())) {
 			
 			adminrepo.save(UserObject);
 			System.out.println("successfully updated an User");
