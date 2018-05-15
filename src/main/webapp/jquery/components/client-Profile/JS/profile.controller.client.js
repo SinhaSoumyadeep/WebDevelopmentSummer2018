@@ -54,19 +54,23 @@ $(document).ready(function(){
         if(email!="")
         {
 
+
             if(!validateEmail(email))
             {
                 infoMsgs("INVALID EMAIL ADDRESS")
                 return
             }
+
         }
         if(phone!="")
         {
+
             if(!validatePhonenumber(phone))
             {
                 infoMsgs("INVALID PHONE NUMBER")
                 return
             }
+
         }
 
         
