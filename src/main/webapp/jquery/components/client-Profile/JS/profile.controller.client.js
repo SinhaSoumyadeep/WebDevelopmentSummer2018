@@ -56,7 +56,7 @@ $(document).ready(function(){
 
             if(!validateEmail(email))
             {
-                infoMsgs("You have entered invalid email address!")
+                infoMsgs("INVALID EMAIL ADDRESS")
                 return
             }
         }
@@ -64,7 +64,7 @@ $(document).ready(function(){
         {
             if(!validatePhonenumber(phone))
             {
-                infoMsgs("You have entered invalid Phone Number!")
+                infoMsgs("INVALID PHONE NUMBER")
                 return
             }
         }
