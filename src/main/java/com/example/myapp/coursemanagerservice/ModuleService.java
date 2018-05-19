@@ -50,7 +50,7 @@ public class ModuleService {
 	@DeleteMapping("/api/module/{moduleId}")
 	public void deleteModule(@PathVariable("moduleId") int moduleId)
 	{
-		System.out.println("************************ INSIDE DELETE METHOD IN MODULE ************************");
+		System.out.println("************************ INSIDE DELETE METHOD IN MODULE  ************************");
 		moduleRepository.deleteById(moduleId);
 	}
 	
