@@ -1,5 +1,8 @@
 package com.example.myapp.coursemanagerservice;
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.coursemanager.Course;
+
+
+
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -32,8 +38,9 @@ public class CourseServices {
 	public String deleteCourse(@RequestBody Course course) {
 		
 		System.out.println("*********inside delete method!!!!@***********");
-		
+	
 		courseRepository.delete(course);
+		
 		return "deleted";
 		
 	}
