@@ -3,6 +3,8 @@ package com.example.myapp.coursemanagerservice;
 
 
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +31,9 @@ public class CourseServices {
 	public Course createCourse(@RequestBody Course course) {
 		
 		System.out.println("*********inside add method!!!!@***********");
+		course.setOwner("Me");
+		Date date = new Date();
+		course.setCreated(date);
 		
 		Course crs = courseRepository.save(course);
 		return crs;

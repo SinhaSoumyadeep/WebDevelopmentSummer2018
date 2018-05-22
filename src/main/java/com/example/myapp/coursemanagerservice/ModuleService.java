@@ -1,5 +1,6 @@
 package com.example.myapp.coursemanagerservice;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,8 @@ public class ModuleService {
 		if(data.isPresent()) {
 			Course course = data.get();
 			newModule.setCourse(course);
+			newModule.setOwner("Me");
+			newModule.setCreated(new Date());
 			return moduleRepository.save(newModule);
 		}
 		return null;		

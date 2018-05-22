@@ -20,12 +20,21 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	private String owner;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 	@OneToMany(mappedBy="course",cascade = CascadeType.ALL,orphanRemoval=true)
 	private List<Module> modules;
+	
+	
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
 	public int getId() {
 		return id;
 	}
