@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.coursemanager.Course;
 import com.example.myapp.coursemanager.Module;
-
+/**
+ * 
+ * @author Mayukh
+ *
+ */
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
