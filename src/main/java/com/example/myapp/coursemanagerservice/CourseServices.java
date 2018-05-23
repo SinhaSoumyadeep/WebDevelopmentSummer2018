@@ -46,7 +46,6 @@ public class CourseServices {
 	@RequestMapping("/api/addcourse")
 	public Course createCourse(@RequestBody Course course) {
 		
-		System.out.println("*********inside add method!!!!@***********");
 		course.setOwner("Me");
 		Date date = new Date();
 		course.setCreated(date);
@@ -58,8 +57,6 @@ public class CourseServices {
 	@RequestMapping("/api/delcourse")
 	public String deleteCourse(@RequestBody Course course) {
 		
-		System.out.println("*********inside delete method!!!!@***********");
-	
 		courseRepository.delete(course);
 		
 		return "deleted";
@@ -68,9 +65,7 @@ public class CourseServices {
 	
 	@RequestMapping("/api/search")
 	public List<Course> searchCourse(@RequestBody Course course) {
-		
-		System.out.println("*********inside search method!!!!@***********");
-		System.out.println(course.getTitle());
+	
 		List<Course> crseFilter = courseRepository.findByTitle(course.getTitle());
 		return crseFilter;
 
