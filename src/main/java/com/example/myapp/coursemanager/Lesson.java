@@ -2,7 +2,7 @@ package com.example.myapp.coursemanager;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +21,7 @@ public class Lesson {
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
-	@OneToMany(mappedBy="lesson",cascade = CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy="lesson", orphanRemoval=true)
 	private List<Topics> topics;
 	
 	

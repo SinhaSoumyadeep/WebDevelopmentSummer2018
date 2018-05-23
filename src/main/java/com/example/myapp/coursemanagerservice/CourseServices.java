@@ -3,7 +3,11 @@ package com.example.myapp.coursemanagerservice;
 
 
 
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.coursemanager.Course;
+import com.example.myapp.utilities.ConvertIteratableToList;
 
 
 
@@ -24,7 +29,18 @@ public class CourseServices {
 	CourseRepository courseRepository;	
 	@RequestMapping("/api/course")
 	public Iterable<Course> findAllCourses() {
-		return courseRepository.findAll(); 
+		
+		Iterable<Course> crsLst = courseRepository.findAll();
+		List<Course> crlst = (List<Course>)ConvertIteratableToList.iterableToCollection(crsLst);
+		
+		Collections.sort(crlst, new Comparator<Course>() {
+			  public int compare(Course o1, Course o2) {
+			      if (o1.getCreated() == null || o2.getCreated() == null)
+			        return 0;
+			      return o2.getCreated().compareTo(o1.getCreated());
+			  }
+			});
+		return crlst; 
 	}
 	
 	@RequestMapping("/api/addcourse")
@@ -48,6 +64,16 @@ public class CourseServices {
 		
 		return "deleted";
 		
+	}
+	
+	@RequestMapping("/api/search")
+	public List<Course> searchCourse(@RequestBody Course course) {
+		
+		System.out.println("*********inside search method!!!!@***********");
+		System.out.println(course.getTitle());
+		List<Course> crseFilter = courseRepository.findByTitle(course.getTitle());
+		return crseFilter;
+
 	}
 	
 

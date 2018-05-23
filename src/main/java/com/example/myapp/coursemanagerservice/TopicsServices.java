@@ -25,8 +25,8 @@ public class TopicsServices {
 	@Autowired
 	TopicsRepository topicsRepository;
 	
-	/*@GetMapping("/api/course/{courseId}/module/{moduleId}")
-	public List<Topics> findAllTopicsForLesson(@PathVariable("moduleId") int lessonId) {
+	@GetMapping("/api/lesson/{lessonId}")
+	public List<Topics> findAllTopicsForLesson(@PathVariable("lessonId") int lessonId) {
 		System.out.println("inside lesson plan  "+lessonId);
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		System.out.println(data.get().getTopics());
@@ -37,8 +37,8 @@ public class TopicsServices {
 		return null;		
 	}
 	
-	@PostMapping("/api/course/{courseId}/module/{moduleId}")
-	public Topics createTopics(@PathVariable("courseId") int courseId, @PathVariable("moduleId") int lessonId, @RequestBody Topics newTopic) {
+	@PostMapping("/api/lesson/{lessonId}")
+	public Topics createTopics(@PathVariable("lessonId") int lessonId, @RequestBody Topics newTopic) {
 		
 		System.out.println("inside create Topic");
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
@@ -50,11 +50,11 @@ public class TopicsServices {
 		return null;		
 	}
 	
-	@DeleteMapping("/api/lesson/{id}")
+	@DeleteMapping("/api/topic/{id}")
 	public void deleteTopic(@PathVariable("id") int topicId)
 	{
 		System.out.println("************************INSIDE DELETE METHOD IN Topic************************");
 		topicsRepository.deleteById(topicId);
-	}*/
+	}
 
 }
