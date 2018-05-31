@@ -4,5 +4,4 @@ import org.springframework.data.repository.CrudRepository;
 import com.example.myapp.coursemanager.Topics;
 
 
-public interface TopicsRepository
-extends CrudRepository<Topics, Integer>{}
+public interface TopicsRepository extends CrudRepository<Topics, Integer>{}
