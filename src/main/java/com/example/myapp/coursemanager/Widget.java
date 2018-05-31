@@ -30,7 +30,6 @@ public class Widget {
 	private Topics topics;
 	
 	
-	
 	public String getWidget_Name() {
 		return widget_Name;
 	}
