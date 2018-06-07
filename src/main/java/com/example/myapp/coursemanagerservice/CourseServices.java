@@ -29,6 +29,7 @@ public class CourseServices {
 	CourseRepository courseRepository;	
 	@RequestMapping("/api/course")
 	public Iterable<Course> findAllCourses() {
+		System.out.println("inside find all courses");
 		
 		Iterable<Course> crsLst = courseRepository.findAll();
 		List<Course> crlst = (List<Course>)ConvertIteratableToList.iterableToCollection(crsLst);

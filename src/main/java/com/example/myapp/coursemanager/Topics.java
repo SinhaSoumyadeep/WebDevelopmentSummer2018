@@ -23,9 +23,17 @@ public class Topics {
 	private Lesson lesson;
 	@OneToMany(mappedBy="topics", orphanRemoval=true)
 	private List<Widget> widget;
-	
+	@OneToMany(mappedBy="topics", orphanRemoval=true)
+	private List<QuestionWidget> qWidget;
 	
 
+	
+	public List<QuestionWidget> getqWidget() {
+		return qWidget;
+	}
+	public void setqWidget(List<QuestionWidget> qWidget) {
+		this.qWidget = qWidget;
+	}
 	public List<Widget> getWidget() {
 		return widget;
 	}
