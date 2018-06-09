@@ -136,7 +136,7 @@ public class UserService {
 	public String validateGoogleToken(String idToken)
 	{
 		System.out.println(idToken);
-		return "";
+		return "validated";
 	}
 	
 	
