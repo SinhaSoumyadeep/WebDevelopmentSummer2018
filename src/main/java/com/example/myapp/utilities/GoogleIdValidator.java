@@ -20,7 +20,8 @@ public class GoogleIdValidator {
 	  JsonFactory jsonFactory = new JacksonFactory();
 	 GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
 	     // Specify the CLIENT_ID of the app that accesses the backend:
-	     .setAudience(Collections.singletonList("82907325524-28rvgcvl37jce0d1g5n7qohn0s7bqbvr.apps.googleusercontent.com"))
+	     .setAudience(Collections.singletonList("82907325524-u36d933g3395r2adpsons003afp8c3nr.apps.googleusercontent.com"))
+	     
 	     // Or, if multiple clients access the backend:
 	     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
 	     .build();
