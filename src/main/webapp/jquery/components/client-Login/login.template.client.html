@@ -13,16 +13,7 @@
     <script src="JS/login.controller.client.js"></script>
     <script src="../../Services/user.service.client.js"></script>
     <script src="../../Models/user.model.client.js"></script>
-    <script type="text/javascript">
     
-    function onSignIn(googleUser) {
-    	  var profile = googleUser.getBasicProfile();
-    	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    	  console.log('Name: ' + profile.getName());
-    	  console.log('Image URL: ' + profile.getImageUrl());
-    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    	}
-    </script>
 </head>
 
 <body>
@@ -53,6 +44,15 @@
                         <!--<button type="button" class="btn btn-success" id="search">Search</button>-->
                         <!--<button type="button" class="btn btn-success" id="loginBtn"  style="padding: 7.37px 149.75px;" >Sign In</button>-->
                         <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        <script>
+						    function onSignIn(googleUser) {
+						    	  var profile = googleUser.getBasicProfile();
+						    	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+						    	  console.log('Name: ' + profile.getName());
+						    	  console.log('Image URL: ' + profile.getImageUrl());
+						    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+						    	}
+					    </script>
 
                     </div>
 
