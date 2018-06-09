@@ -47,11 +47,33 @@
                         <script>
 						    function onSignIn(googleUser) {
 						    	  var profile = googleUser.getBasicProfile();
+						    	  var id = profile.getId();
 						    	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 						    	  console.log('Name: ' + profile.getName());
 						    	  console.log('Image URL: ' + profile.getImageUrl());
 						    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+						    	  this.validateUser(id)
+						    	  
 						    	}
+						    
+						    
+						    function validateUser(id) {
+						    	alert("hello");
+
+						        var valUserRes = $.ajax({
+						            async: false,
+						            type:"POST",
+						            url: "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/googleValidate",
+						            data: {
+						                'id': id
+						            },
+
+						        })
+
+						        var valUserRes = valUserRes.responseText;
+						        return valUserRes;
+
+						    }
 					    </script>
 
                     </div>

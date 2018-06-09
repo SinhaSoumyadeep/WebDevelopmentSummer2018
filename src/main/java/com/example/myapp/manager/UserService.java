@@ -130,6 +130,18 @@ public class UserService {
 		return "SOMETHING WENT WRONG!";
 	}
 	
+	
+	
+	@RequestMapping(value="/api/googleValidate")
+	public String validateGoogleToken(String idToken)
+	{
+		System.out.println(idToken);
+		return "";
+	}
+	
+	
+	
+	
 	@RequestMapping(value="api/onload")
 	public Iterable<User> onLoad()
 	{
