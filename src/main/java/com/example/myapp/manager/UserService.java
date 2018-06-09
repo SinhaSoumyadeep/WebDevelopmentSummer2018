@@ -141,12 +141,9 @@ public class UserService {
 		String res = "invalid";
 		try {
 			res = new GoogleIdValidator().validate(idToken);
-		} catch (GeneralSecurityException e) {
+		}  catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return "inside catch";
 		}
 		return res;
 	}
