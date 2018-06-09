@@ -1,5 +1,7 @@
 package com.example.myapp.manager;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.dao.UserRepository;
 import com.example.myapp.model.User;
+import com.example.myapp.utilities.GoogleIdValidator;
 import com.example.myapp.utilities.SendEmail;
 
 @RestController
@@ -135,8 +138,17 @@ public class UserService {
 	@RequestMapping(value="/api/googleValidate")
 	public String validateGoogleToken(String idToken)
 	{
-		System.out.println(idToken);
-		return "validated";
+		String res = "invalid";
+		try {
+			res = new GoogleIdValidator().validate(idToken);
+		} catch (GeneralSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 	
 	
