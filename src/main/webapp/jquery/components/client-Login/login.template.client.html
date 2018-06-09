@@ -9,10 +9,20 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="82907325524-28rvgcvl37jce0d1g5n7qohn0s7bqbvr.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="82907325524-j15k35lr8mm8r39q5uiajo2r2kte5278.apps.googleusercontent.com">
     <script src="JS/login.controller.client.js"></script>
     <script src="../../Services/user.service.client.js"></script>
     <script src="../../Models/user.model.client.js"></script>
+    <script type="text/javascript">
+    
+    function onSignIn(googleUser) {
+    	  var profile = googleUser.getBasicProfile();
+    	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    	  console.log('Name: ' + profile.getName());
+    	  console.log('Image URL: ' + profile.getImageUrl());
+    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    	}
+    </script>
 </head>
 
 <body>
