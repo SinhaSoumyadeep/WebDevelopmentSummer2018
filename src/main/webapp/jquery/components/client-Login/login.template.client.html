@@ -9,7 +9,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="82907325524-u36d933g3395r2adpsons003afp8c3nr.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="82907325524-jfg57300vs7m0300cs7uk6pvekjckq39.apps.googleusercontent.com">
     <script src="JS/login.controller.client.js"></script>
     <script src="../../Services/user.service.client.js"></script>
     <script src="../../Models/user.model.client.js"></script>
@@ -47,23 +47,23 @@
                         <script>
 						    function onSignIn(googleUser) {
 						    	  var profile = googleUser.getBasicProfile();
-						    	  var id = profile.getId();
+						    	  var id_token = googleUser.getAuthResponse().id_token;
 						    	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 						    	  console.log('Name: ' + profile.getName());
 						    	  console.log('Image URL: ' + profile.getImageUrl());
 						    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-						    	  this.validateUser(id)
+						    	  this.validateUser(id_token)
 						    	  
 						    	}
 						    
 						    
 						    function validateUser(id) {
-						    	alert("hello from validate user");
+						    	alert("hello from validate user"+id);
 
 						        var valUserRes = $.ajax({
 						            async: false,
 						            type:"POST",
-						            url: "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/googleValidate",
+						            url: "http://localhost:8080/api/googleValidate",
 						            data: {
 						                'id': id
 						            },

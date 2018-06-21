@@ -8,9 +8,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +30,19 @@ public class CourseServices {
 	
 	@Autowired
 	CourseRepository courseRepository;	
+	
+	
+	@GetMapping("/api/course/{courseId}")
+	public Course findCourseById(@PathVariable("courseId") int courseId) {
+		Optional<Course> data =  courseRepository.findById(courseId);
+		if(data.isPresent()) {
+			Course course = data.get();
+			return course;
+		}
+		return null;
+	}
+	
+	
 	@RequestMapping("/api/course")
 	public Iterable<Course> findAllCourses() {
 		System.out.println("inside find all courses");

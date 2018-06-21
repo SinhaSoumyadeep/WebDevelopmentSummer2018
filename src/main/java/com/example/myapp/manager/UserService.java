@@ -136,11 +136,12 @@ public class UserService {
 	
 	
 	@RequestMapping(value="/api/googleValidate")
-	public String validateGoogleToken(String idToken)
+	public String validateGoogleToken(String id)
 	{
+		System.out.println();
 		String res = "invalid";
 		try {
-			res = new GoogleIdValidator().validate(idToken);
+			res = new GoogleIdValidator().validate(id);
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block
 			return "inside catch";
